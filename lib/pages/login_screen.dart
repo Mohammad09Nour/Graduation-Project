@@ -4,7 +4,6 @@ import 'package:flutter_application_2/models/password_args.dart';
 import 'package:flutter_application_2/pages/RegisterPage.dart';
 import 'package:flutter_application_2/pages/home_page.dart';
 import 'package:flutter_application_2/widgets/do_you_have_an.dart';
-import 'package:flutter_application_2/widgets/emaiFormField.dart';
 import 'package:flutter_application_2/widgets/passwordFormField.dart';
 import 'package:flutter_application_2/widgets/submit_button.dart';
 import 'package:flutter_application_2/widgets/username_text_field.dart';

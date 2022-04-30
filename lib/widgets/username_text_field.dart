@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/constants.dart';
 
@@ -38,6 +37,5 @@ class UserName extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }
