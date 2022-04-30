@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/constants.dart';
 import 'package:flutter_application_2/models/item_info.dart';
 import 'package:flutter_application_2/pages/details_page.dart';
+import 'package:flutter_application_2/pages/profil_page.dart';
 import 'package:readmore/readmore.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,66 +33,63 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: 'first',
-      child: Scaffold(
-        appBar: AppBar(),
-        body: PageView(
-            controller: _pageController,
-            onPageChanged: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-            children: [
-              getBody(),
-              Container(
-                height: 250,
-                color: Colors.black,
-              )
-            ]),
-        bottomNavigationBar: BottomNavyBar(
-          onItemSelected: (index) {
-            print(index);
+    return Scaffold(
+      appBar: AppBar(),
+      body: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
             setState(() {
-              _selectedIndex = index;
-              _pageController.animateToPage(
-                index,
-                duration: Duration(microseconds: 250),
-                curve: Curves.ease,
-              );
+              _currentIndex = index;
             });
           },
-          selectedIndex: _selectedIndex,
-          showElevation: true,
-          itemCornerRadius: 24,
-          curve: Curves.easeIn,
-          items: [
-            BottomNavyBarItem(
-              activeColor: Colors.red,
-              textAlign: TextAlign.center,
-              icon: Icon(Icons.home_filled),
-              title: Text("Home"),
-            ),
-            BottomNavyBarItem(
-              icon: Icon(Icons.home_filled),
-              activeColor: Colors.purpleAccent,
-              textAlign: TextAlign.center,
-              title: Text("Home"),
+          children: [
+            getBody(),
+            Container(
+              height: 275,
+              color: Colors.black,
             )
-          ],
-        ),
+          ]),
+      bottomNavigationBar: BottomNavyBar(
+        onItemSelected: (index) {
+          print(index);
+          setState(() {
+            _selectedIndex = index;
+            _pageController.animateToPage(
+              index,
+              duration: Duration(microseconds: 250),
+              curve: Curves.ease,
+            );
+          });
+        },
+        selectedIndex: _selectedIndex,
+        showElevation: true,
+        itemCornerRadius: 24,
+        curve: Curves.easeIn,
+        items: [
+          BottomNavyBarItem(
+            activeColor: Colors.red,
+            textAlign: TextAlign.center,
+            icon: Icon(Icons.home_filled),
+            title: Text("Home"),
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.home_filled),
+            activeColor: Colors.purpleAccent,
+            textAlign: TextAlign.center,
+            title: Text("Home"),
+          )
+        ],
       ),
     );
   }
 
   Widget getBody() {
     ItemInfo item = ItemInfo(
-      "Title",
-      "images/p.jpg",
-      "+96395681679",
-      " world this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this world this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this world this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this world this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world this timehello world this world this timehello world this timehello world this timehello world this time",
-    );
+        "Title",
+        "images/p.jpg",
+        "+96395681679",
+        " world this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this world this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this world this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this world this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world this timehello world this world this timehello world this timehello world this timehello world this time",
+        'images/pic.jpg');
     return Container(
       padding: EdgeInsets.all(6),
       child: ListView.builder(
@@ -118,10 +116,22 @@ class _HomePageState extends State<HomePage> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  radius: 14,
-                  child: ClipOval(
-                    child: Center(child: Image.asset("images/pic.jpg")),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ProfilePage(url: item.urlProfileImage)));
+                  },
+                  child: Hero(
+                    tag: item.urlProfileImage,
+                    child: CircleAvatar(
+                      radius: 17,
+                      child: ClipOval(
+                        child: Center(child: Image.asset(item.urlProfileImage)),
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(width: 7),
@@ -150,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text(
                         "(19 min) 5,9 km",
-                        style: TextStyle(color: kPrimaryColor, fontSize: 18),
+                        style: TextStyle(color: kPrimaryColor, fontSize: 15),
                       ),
                     ],
                   ),

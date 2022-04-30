@@ -20,7 +20,7 @@ class NetworkingPageHeader extends SliverPersistentHeaderDelegate {
         children: [
           Center(
             child: Hero(
-              tag: 'cuatomTag',
+              tag: 'cusatomTag',
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.5,
                 color: Colors.white,
@@ -63,7 +63,7 @@ class NetworkingPageHeader extends SliverPersistentHeaderDelegate {
               ),
               child: IconButton(
                 icon: Icon(
-                  Icons.arrow_back,
+                  Icons.arrow_back_ios,
                   color: kPrimaryColor,
                   size: 25,
                 ),
