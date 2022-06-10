@@ -59,12 +59,12 @@ class NetworkingPageHeader extends SliverPersistentHeaderDelegate {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                color: kBackgroundColor.withOpacity(titleOpacity(shrinkOffset)),
+                // color: kBackgroundColor.withOpacity(titleOpacity(shrinkOffset)),
               ),
               child: IconButton(
                 icon: Icon(
                   Icons.arrow_back_ios,
-                  color: kPrimaryColor,
+                  color: kPrimaryColor.withOpacity(titleOpacity(shrinkOffset)),
                   size: 25,
                 ),
                 onPressed: () {

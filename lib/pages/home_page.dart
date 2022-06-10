@@ -4,6 +4,7 @@ import 'package:flutter_application_2/constants.dart';
 import 'package:flutter_application_2/models/item_info.dart';
 import 'package:flutter_application_2/pages/details_page.dart';
 import 'package:flutter_application_2/pages/profil_page.dart';
+import 'package:flutter_application_2/widgets/MySearchDelegate.dart';
 import 'package:readmore/readmore.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,7 +35,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("GGG"),
+        backgroundColor: Colors.pink,
+        actions: [
+          IconButton(
+              color: Colors.blue,
+              onPressed: () {
+                showSearch(context: context, delegate: MySearchDelegate());
+              },
+              icon: Icon(Icons.search))
+        ],
+      ),
       body: PageView(
           controller: _pageController,
           onPageChanged: (index) {

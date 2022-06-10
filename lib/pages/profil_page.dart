@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_application_2/constants.dart';
+import 'package:flutter_application_2/models/item_info.dart';
+import 'package:flutter_application_2/pages/details_page.dart';
 
 class ProfilePage extends StatefulWidget {
   final String url;
@@ -122,10 +124,10 @@ class _ProfilePageState extends State<ProfilePage> {
               mainAxisSpacing: 10,
               childAspectRatio: 5 / 6,
               children: [
-                buildCard('images/p.jpg'),
-                buildCard('images/ppp.jpg'),
-                buildCard('images/pp.jpg'),
-                buildCard('images/pp.jpg')
+                buildCard('images/p.jpg', false),
+                buildCard('images/ppp.jpg', true),
+                buildCard('images/pp.jpg', false),
+                buildCard('images/pp.jpg', false)
               ],
             ),
           ),
@@ -210,31 +212,54 @@ class _ProfilePageState extends State<ProfilePage> {
         );
   }
 
-  Widget buildCard(String url) {
-    return Stack(
-      children: [
-        Card(
-          elevation: 10,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(30),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(url),
+  Widget buildCard(String url, bool isSold) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailsPage(
+                    item: ItemInfo(
+                        "title", url, "phoneNumber", "descriptions", url))));
+      },
+      child: Stack(
+        children: [
+          Card(
+            elevation: 10,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(30),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(url),
+                ),
               ),
             ),
           ),
-        ),
-        Expanded(
-            child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: [BoxShadow()])))
-      ],
+          isSold
+              ? Expanded(
+                  child: Container(
+                      decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.7),
+                  borderRadius: BorderRadius.circular(30),
+                )))
+              : Container(),
+          isSold
+              ? Center(
+                  child: Text(
+                    "Done",
+                    style: TextStyle(
+                        fontSize: 19,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                )
+              : Container(),
+        ],
+      ),
     );
   }
 }

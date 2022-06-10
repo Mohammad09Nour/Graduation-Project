@@ -6,6 +6,7 @@ import 'package:flutter_application_2/pages/profil_page.dart';
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: "ff", home: HomePage());
+    return MaterialApp(
+        debugShowCheckedModeBanner: false, title: "ff", home: HomePage());
   }
 }
