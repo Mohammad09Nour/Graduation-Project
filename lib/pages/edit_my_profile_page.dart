@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/ConfigSize.dart';
+import 'package:flutter_application_2/pages/edit_personal_info.dart';
 import 'package:flutter_application_2/pages/edit_profile.dart';
 
 class EditMyProfile extends StatefulWidget {
@@ -74,7 +75,7 @@ class _EditMyProfileState extends State<EditMyProfile> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            EditProfilePage()));
+                                            EditPersonalInfo()));
                               },
                               icon: Icon(
                                 Icons.edit,
