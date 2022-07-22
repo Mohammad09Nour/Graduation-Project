@@ -2,7 +2,9 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/constants.dart';
 import 'package:flutter_application_2/models/item_info.dart';
+import 'package:flutter_application_2/pages/create_Post.dart';
 import 'package:flutter_application_2/pages/details_page.dart';
+import 'package:flutter_application_2/pages/edit_my_profile_page.dart';
 import 'package:flutter_application_2/pages/profil_page.dart';
 import 'package:flutter_application_2/widgets/MySearchDelegate.dart';
 import 'package:readmore/readmore.dart';
@@ -35,18 +37,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("GGG"),
-        backgroundColor: Colors.pink,
+      /*appBar: AppBar(
+        //  title: Text("GGG"),
+        backgroundColor: kPrimaryColor,
         actions: [
           IconButton(
               color: Colors.blue,
               onPressed: () {
                 showSearch(context: context, delegate: MySearchDelegate());
               },
-              icon: Icon(Icons.search))
+              icon: Icon(
+                Icons.search,
+                color: Colors.white,
+              ))
         ],
-      ),
+      ),*/
       body: PageView(
           controller: _pageController,
           onPageChanged: (index) {
@@ -56,10 +61,8 @@ class _HomePageState extends State<HomePage> {
           },
           children: [
             getBody(),
-            Container(
-              height: 275,
-              color: Colors.black,
-            )
+            CreatePost(),
+            EditMyProfile(),
           ]),
       bottomNavigationBar: BottomNavyBar(
         onItemSelected: (index) {
@@ -85,11 +88,20 @@ class _HomePageState extends State<HomePage> {
             title: Text("Home"),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.home_filled),
+            icon: Icon(
+              Icons.add_circle_outline,
+              size: 32,
+            ),
             activeColor: Colors.purpleAccent,
             textAlign: TextAlign.center,
-            title: Text("Home"),
-          )
+            title: Text("Donate Now"),
+          ),
+          BottomNavyBarItem(
+            activeColor: Colors.pink,
+            textAlign: TextAlign.center,
+            icon: Icon(Icons.person_rounded),
+            title: Text("Profile"),
+          ),
         ],
       ),
     );
@@ -102,15 +114,39 @@ class _HomePageState extends State<HomePage> {
         "+96395681679",
         " world this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this world this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this world this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this world this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world thiworld this timehello world this world this timehello world this world this timehello world this world this timehello world this timehello world this timehello world this time",
         'images/pic.jpg');
-    return Container(
-      padding: EdgeInsets.all(6),
-      child: ListView.builder(
-        padding: EdgeInsets.only(top: 8),
-        itemCount: 4,
-        itemBuilder: (BuildContext context, int index) {
-          return buildPostCard(context, item);
-        },
-      ),
+    return Column(
+      children: [
+        Container(
+          height: 50,
+          color: kPrimaryColor,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                  color: Colors.blue,
+                  onPressed: () {
+                    showSearch(context: context, delegate: MySearchDelegate());
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ))
+            ],
+          ),
+        ),
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.all(6),
+            child: ListView.builder(
+              padding: EdgeInsets.only(top: 8),
+              itemCount: 4,
+              itemBuilder: (BuildContext context, int index) {
+                return buildPostCard(context, item);
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -136,13 +172,10 @@ class _HomePageState extends State<HomePage> {
                             builder: (context) =>
                                 ProfilePage(url: item.urlProfileImage)));
                   },
-                  child: Hero(
-                    tag: item.urlProfileImage,
-                    child: CircleAvatar(
-                      radius: 17,
-                      child: ClipOval(
-                        child: Center(child: Image.asset(item.urlProfileImage)),
-                      ),
+                  child: CircleAvatar(
+                    radius: 17,
+                    child: ClipOval(
+                      child: Center(child: Image.asset(item.urlProfileImage)),
                     ),
                   ),
                 ),

@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/ConfigSize.dart';
+import 'package:flutter_application_2/constants.dart';
+import 'package:flutter_application_2/models/item_info.dart';
+import 'package:flutter_application_2/pages/details_page.dart';
 import 'package:flutter_application_2/pages/edit_personal_info.dart';
-import 'package:flutter_application_2/pages/edit_profile.dart';
+import 'package:flutter_application_2/pages/login_screen.dart';
 
 class EditMyProfile extends StatefulWidget {
   const EditMyProfile({Key? key}) : super(key: key);
@@ -17,13 +20,15 @@ class _EditMyProfileState extends State<EditMyProfile> {
     final Size size = MediaQuery.of(context).size;
     double pad = 0.05 * size.height;
 
+    ItemInfo item = ItemInfo("Hello From Test", 'images/nat2.jpg',
+        '+9639562648', 'Hello Description from tets', 'images/pic.jpg');
     return Scaffold(
       backgroundColor: Color(0xffF8F8FA),
       body: Stack(
         clipBehavior: Clip.none,
         children: [
           Container(
-            color: Colors.blue[600],
+            color: kPrimaryColor,
             height: 0.3 * size.height,
             child: Padding(
               padding: EdgeInsets.only(left: 20, right: 20, top: pad),
@@ -108,6 +113,11 @@ class _EditMyProfileState extends State<EditMyProfile> {
                                       TextButton(
                                         onPressed: () {
                                           Navigator.pop(context);
+                                          Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      LoginScreen()));
                                         },
                                         child: Text(
                                           "Delete",
@@ -165,9 +175,9 @@ class _EditMyProfileState extends State<EditMyProfile> {
                       height: size.height * 0.65,
                       child: ListView(
                         children: [
-                          _myCard(),
-                          _myCard(),
-                          _myCard(),
+                          _myCard(item),
+                          _myCard(item),
+                          _myCard(item),
                         ],
                       ),
                     )
@@ -181,11 +191,16 @@ class _EditMyProfileState extends State<EditMyProfile> {
     );
   }
 
-  Widget _myCard() {
+  Widget _myCard(ItemInfo item) {
     return Row(
       children: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailsPage(item: item)));
+          },
           child: Padding(
             padding: const EdgeInsets.only(left: 30.0, top: 10),
             child: Container(

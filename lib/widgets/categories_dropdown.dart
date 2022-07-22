@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/constants.dart';
 
 final List<String> items = [
   'Item1',
@@ -33,7 +34,7 @@ class _CategoriesDropDownState extends State<CategoriesDropDown> {
               Icon(
                 Icons.list,
                 size: 16,
-                color: Colors.yellow,
+                color: Colors.white,
               ),
               SizedBox(
                 width: 4,
@@ -44,7 +45,7 @@ class _CategoriesDropDownState extends State<CategoriesDropDown> {
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
-                    color: Colors.yellow,
+                    color: Colors.white,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -75,7 +76,7 @@ class _CategoriesDropDownState extends State<CategoriesDropDown> {
             Icons.arrow_forward_ios_outlined,
           ),
           iconSize: 14,
-          iconEnabledColor: Colors.yellow,
+          iconEnabledColor: Colors.white,
           iconDisabledColor: Colors.grey,
           buttonHeight: 50,
           buttonWidth: 160,
@@ -85,7 +86,7 @@ class _CategoriesDropDownState extends State<CategoriesDropDown> {
             border: Border.all(
               color: Colors.black26,
             ),
-            color: Colors.redAccent,
+            color: kPrimaryColor,
           ),
           buttonElevation: 2,
           itemHeight: 40,
@@ -95,7 +96,7 @@ class _CategoriesDropDownState extends State<CategoriesDropDown> {
           dropdownPadding: null,
           dropdownDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(14),
-            color: Colors.redAccent,
+            color: kPrimaryColor,
           ),
           dropdownElevation: 8,
           scrollbarRadius: const Radius.circular(40),

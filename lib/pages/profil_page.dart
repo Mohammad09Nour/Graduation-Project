@@ -65,25 +65,21 @@ class _ProfilePageState extends State<ProfilePage> {
                 left: MediaQuery.of(context).size.width * 0.3,
                 child: Column(
                   children: [
-                    Hero(
-                      tag: widget.url,
-                      child: Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(widget.url)),
-                            borderRadius: BorderRadius.circular(75),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.15),
-                                  offset: Offset(0.0, 1.0), //(x,y)
-                                  blurRadius: 3.0,
-                                  spreadRadius: 8)
-                            ]),
-                      ),
+                    Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.cover, image: AssetImage(widget.url)),
+                          borderRadius: BorderRadius.circular(75),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.15),
+                                offset: Offset(0.0, 1.0), //(x,y)
+                                blurRadius: 3.0,
+                                spreadRadius: 8)
+                          ]),
                     ),
                     SizedBox(height: 8),
                     Text("Sliman",
@@ -111,25 +107,27 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
         Expanded(
-          child: Container(
+          child: /*Container(
             margin: EdgeInsets.only(left: 6, right: 6, top: 6),
             decoration: BoxDecoration(
                 color: Colors.grey.withOpacity(0.15),
                 borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
-            child: GridView.count(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 12),
-              crossAxisCount: 1,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 10,
-              childAspectRatio: 5 / 6,
-              children: [
-                buildCard('images/p.jpg', false),
-                buildCard('images/ppp.jpg', true),
-                buildCard('images/pp.jpg', false),
-                buildCard('images/pp.jpg', false)
-              ],
-            ),
+            child: 
+          ),*/
+              GridView.count(
+            physics: ScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 12),
+            crossAxisCount: 1,
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 10,
+            childAspectRatio: 5 / 6,
+            children: [
+              buildCard('images/p.jpg', false),
+              buildCard('images/ppp.jpg', true),
+              buildCard('images/pp.jpg', false),
+              buildCard('images/pp.jpg', false)
+            ],
           ),
         )
       ],
@@ -240,12 +238,11 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           isSold
-              ? Expanded(
-                  child: Container(
-                      decoration: BoxDecoration(
+              ? Container(
+                  decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(0.7),
                   borderRadius: BorderRadius.circular(30),
-                )))
+                ))
               : Container(),
           isSold
               ? Center(

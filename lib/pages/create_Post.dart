@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
@@ -30,16 +31,19 @@ class _CreatePostState extends State<CreatePost> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("images/background.jpg"),
-            fit: BoxFit.fill,
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("images/background.jpg"),
+          fit: BoxFit.fill,
         ),
-        child: Center(
-          child: Container(
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ListView(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
               decoration: BoxDecoration(color: Colors.white.withOpacity(0.3)),
               width: MediaQuery.of(context).size.width / 1.2,
               height: MediaQuery.of(context).size.height / 1.2,
@@ -75,7 +79,7 @@ class _CreatePostState extends State<CreatePost> {
                           ),
                         ),
                       ),
-                      Expanded(child: CategoriesDropDown()),
+                      //  Expanded(child: CategoriesDropDown()),
                     ],
                   ),
                   SizedBox(
@@ -117,25 +121,49 @@ class _CreatePostState extends State<CreatePost> {
                             getAttachImage(1),
                           ],
                         ),
-                        //getAttachImage(2),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            "SHARE",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.transparent,
-                            shadowColor: Colors.transparent,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30)),
-                          ),
+                        Center(
+                          child: getAttachImage(2),
                         )
                       ],
                     ),
                   ),
                 ],
-              )),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: 15, right: MediaQuery.of(context).size.width / 10),
+                  child: Container(
+                    width: 140,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                        Color.fromARGB(255, 193, 63, 245),
+                        Color.fromARGB(255, 143, 26, 221)
+                      ]),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        "SHARE",
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            )
+          ],
         ),
       ),
     );
