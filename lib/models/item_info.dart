@@ -1,6 +1,6 @@
 class ItemInfo {
-  final String title;
-  final String imageUrl;
+  late final String title;
+  late final List<String> imageUrl;
   final String phoneNumber;
   final String descriptions;
   final String urlProfileImage;

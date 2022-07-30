@@ -218,7 +218,7 @@ class _ProfilePageState extends State<ProfilePage> {
             MaterialPageRoute(
                 builder: (context) => DetailsPage(
                     item: ItemInfo(
-                        "title", url, "phoneNumber", "descriptions", url))));
+                        "title", [url], "phoneNumber", "descriptions", url))));
       },
       child: Stack(
         children: [

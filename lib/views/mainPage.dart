@@ -1,87 +1,20 @@
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/constants.dart';
 import 'package:flutter_application_2/controller/home_page_controller.dart';
 import 'package:flutter_application_2/models/item_info.dart';
-import 'package:flutter_application_2/pages/create_Post.dart';
 import 'package:flutter_application_2/pages/details_page.dart';
-import 'package:flutter_application_2/pages/edit_my_profile_page.dart';
 import 'package:flutter_application_2/pages/profil_page.dart';
-import 'package:flutter_application_2/views/mainPage.dart';
 import 'package:flutter_application_2/widgets/MySearchDelegate.dart';
 import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 
-// ignore: must_be_immutable
-class HomePage extends StatelessWidget {
-  late int _currentIndex;
-  late int _selectedIndex = 0;
-  late PageController _pageController = PageController();
-
-  final homePAgeController = Get.put(HomePageController());
+class MainHomePage extends StatelessWidget {
+  MainHomePage({Key? key}) : super(key: key);
+  final homePAgeController = Get.find<HomePageController>();
 
   @override
   Widget build(BuildContext context) {
-    print("object");
-    return GetX<HomePageController>(builder: (controller) {
-      return Scaffold(
-        body: PageView(
-            controller: _pageController,
-            onPageChanged: (index) {
-              //
-              controller.setSelectedPage(index);
-
-              //
-            },
-            children: [
-              getBody(controller, context),
-              //MainHomePage(),
-              CreatePost(),
-              EditMyProfile(),
-            ]),
-        bottomNavigationBar: BottomNavyBar(
-          onItemSelected: (index) {
-            _pageController.animateToPage(
-              index,
-              duration: Duration(microseconds: 250),
-              curve: Curves.ease,
-            );
-
-            controller.setSelectedPage(index);
-          },
-          selectedIndex: controller.getSelectedPage,
-          showElevation: true,
-          itemCornerRadius: 24,
-          curve: Curves.easeIn,
-          items: [
-            BottomNavyBarItem(
-              activeColor: Colors.red,
-              textAlign: TextAlign.center,
-              icon: Icon(Icons.home_filled),
-              title: Text("Home"),
-            ),
-            BottomNavyBarItem(
-              icon: Icon(
-                Icons.add_circle_outline,
-                size: 32,
-              ),
-              activeColor: Colors.purpleAccent,
-              textAlign: TextAlign.center,
-              title: Text("Donate Now"),
-            ),
-            BottomNavyBarItem(
-              activeColor: Colors.pink,
-              textAlign: TextAlign.center,
-              icon: Icon(Icons.person_rounded),
-              title: Text("Profile"),
-            ),
-          ],
-        ),
-      );
-    });
-  }
-
-  Widget getBody(HomePageController controller, BuildContext context) {
+    print("55r");
     ItemInfo item = ItemInfo(
         "Title",
         ["images/p.jpg"],
@@ -108,18 +41,20 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        Expanded(
-          child: Container(
-            padding: EdgeInsets.all(6),
-            child: ListView.builder(
-              padding: EdgeInsets.only(top: 8),
-              itemCount: controller.items.length,
-              itemBuilder: (BuildContext context, int index) {
-                return buildPostCard(context, controller.items[index]);
-              },
+        GetX<HomePageController>(builder: (controller) {
+          return Expanded(
+            child: Container(
+              padding: EdgeInsets.all(6),
+              child: ListView.builder(
+                padding: EdgeInsets.only(top: 8),
+                itemCount: controller.items.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return buildPostCard(context, item);
+                },
+              ),
             ),
-          ),
-        )
+          );
+        })
       ],
     );
   }

@@ -20,7 +20,7 @@ class _EditMyProfileState extends State<EditMyProfile> {
     final Size size = MediaQuery.of(context).size;
     double pad = 0.05 * size.height;
 
-    ItemInfo item = ItemInfo("Hello From Test", 'images/nat2.jpg',
+    ItemInfo item = ItemInfo("Hello From Test", ['images/nat2.jpg'],
         '+9639562648', 'Hello Description from tets', 'images/pic.jpg');
     return Scaffold(
       backgroundColor: Color(0xffF8F8FA),

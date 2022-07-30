@@ -39,7 +39,7 @@ class MySearchDelegate extends SearchDelegate {
   }
 
   Widget getResult(context) {
-    ItemInfo item = new ItemInfo('this title for test', 'images/pp.jpg',
+    ItemInfo item = new ItemInfo('this title for test', ['images/pp.jpg'],
         '963956816079', 'someDescription for test', 'p.jpg');
     return Padding(
       padding: const EdgeInsets.all(8.0),

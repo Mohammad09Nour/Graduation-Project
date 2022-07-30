@@ -1,20 +1,18 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/controller/create_post_controller.dart';
+import 'package:flutter_application_2/controller/home_page_controller.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 import '../widgets/categories_dropdown.dart';
 
-class CreatePost extends StatefulWidget {
-  const CreatePost({Key? key}) : super(key: key);
-
-  @override
-  State<CreatePost> createState() => _CreatePostState();
-}
-
-class _CreatePostState extends State<CreatePost> {
+class CreatePost extends StatelessWidget {
   List<Uint8List>? imageFileList = List.filled(3, Uint8List(0));
 
   Future<Uint8List?> selectImages(int index) async {
@@ -28,6 +26,7 @@ class _CreatePostState extends State<CreatePost> {
 
   // ignore: deprecated_member_use
   final List<Widget> attachedImages = new List.filled(3, Icon(Icons.add));
+  final cont = Get.put(CreatePostController());
 
   @override
   Widget build(BuildContext context) {
@@ -66,17 +65,23 @@ class _CreatePostState extends State<CreatePost> {
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
+                          child:
+                              GetX<CreatePostController>(builder: (controller) {
+                            return TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                filled: true,
+                                hintStyle: TextStyle(color: Colors.grey[800]),
+                                hintText: "Title",
+                                fillColor: Colors.white70,
                               ),
-                              filled: true,
-                              hintStyle: TextStyle(color: Colors.grey[800]),
-                              hintText: "Title",
-                              fillColor: Colors.white70,
-                            ),
-                          ),
+                              onChanged: (String txt) {
+                               controller.
+                              },
+                            );
+                          }),
                         ),
                       ),
                       //  Expanded(child: CategoriesDropDown()),
