@@ -77,9 +77,7 @@ class CreatePost extends StatelessWidget {
                                 hintText: "Title",
                                 fillColor: Colors.white70,
                               ),
-                              onChanged: (String txt) {
-                               controller.
-                              },
+                              onChanged: (String txt) {},
                             );
                           }),
                         ),
